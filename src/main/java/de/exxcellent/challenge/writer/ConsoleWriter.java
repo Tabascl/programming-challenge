@@ -6,6 +6,7 @@ package de.exxcellent.challenge.writer;
 public class ConsoleWriter implements GenericWriter {
     /**
      * {@inheritDoc}
+     *
      * @param text to write
      */
     @Override

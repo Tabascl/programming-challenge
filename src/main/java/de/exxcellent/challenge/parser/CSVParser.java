@@ -8,6 +8,7 @@ import java.util.List;
 
 /**
  * A parser for csv files.
+ *
  * @param <T> the type of entry to parse to
  */
 public class CSVParser<T extends Entry> implements GenericParser {
@@ -16,8 +17,9 @@ public class CSVParser<T extends Entry> implements GenericParser {
 
     /**
      * Construct a parser for csv files.
+     *
      * @param reader shall provide csv-formatted data
-     * @param type shall determine the entry type
+     * @param type   shall determine the entry type
      */
     public CSVParser(Reader reader, Class<T> type) {
         this.reader = reader;

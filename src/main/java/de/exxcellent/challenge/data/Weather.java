@@ -17,6 +17,7 @@ public class Weather implements Entry {
 
     /**
      * Get the day.
+     *
      * @return the day
      */
     public int GetDay() {

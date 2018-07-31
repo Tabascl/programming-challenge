@@ -19,6 +19,7 @@ public class Football implements Entry {
 
     /**
      * Get the teams name.
+     *
      * @return the teams name
      */
     public String GetTeam() {
@@ -43,6 +44,7 @@ public class Football implements Entry {
 
     /**
      * Calculate the absolute distance between goals scored and goals allowed.
+     *
      * @return the absolute distance between goals scored and goals allowed
      */
     @Override

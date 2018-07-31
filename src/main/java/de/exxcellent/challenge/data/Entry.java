@@ -7,18 +7,21 @@ package de.exxcellent.challenge.data;
 public interface Entry {
     /**
      * Get the maximum value.
+     *
      * @return the maximum value
      */
     int GetMaximum();
 
     /**
      * Get the minimum value.
+     *
      * @return the minimum value
      */
     int GetMinimum();
 
     /**
      * Get the distance between the maximum and minimum values.
+     *
      * @return the distance between the maximum and minimum values
      */
     int GetDistance();

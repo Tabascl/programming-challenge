@@ -6,6 +6,7 @@ package de.exxcellent.challenge.writer;
 public interface GenericWriter {
     /**
      * Write the specified text.
+     *
      * @param text to write
      */
     void Write(String text);
