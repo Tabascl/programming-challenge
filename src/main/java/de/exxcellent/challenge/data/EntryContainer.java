@@ -23,8 +23,8 @@ public class EntryContainer<T extends Entry> {
     }
 
     /**
-     * Initialize the container using a CSVReader
-     * @param reader is any type of {@code Reader}
+     * Initialize the container using a CSVParser
+     * @param reader is any type of {@code Parser}
      * @param type is the type of {@code Entry}
      */
     public EntryContainer(Reader reader, Class<T> type) {
