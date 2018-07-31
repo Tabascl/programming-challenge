@@ -2,7 +2,7 @@ package de.exxcellent.challenge.data;
 
 import com.opencsv.bean.CsvBindByName;
 
-public class CSVWeather implements CSVEntry {
+public class Weather implements Entry {
     @CsvBindByName(column = "Day")
     private int day;
 

@@ -2,7 +2,7 @@ package de.exxcellent.challenge.data;
 
 import com.opencsv.bean.CsvBindByName;
 
-public class CSVFootball implements CSVEntry {
+public class Football implements Entry {
     @CsvBindByName(column = "Team")
     private String team;
 
