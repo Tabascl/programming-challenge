@@ -2,6 +2,8 @@ package de.exxcellent.challenge.data;
 
 import com.opencsv.bean.CsvBindByName;
 
+import static java.lang.Math.abs;
+
 public class Football implements Entry {
     @CsvBindByName(column = "Team")
     private String team;
@@ -28,6 +30,6 @@ public class Football implements Entry {
 
     @Override
     public int getDistance() {
-        return goalsAllowed - goals;
+        return abs(goals - goalsAllowed);
     }
 }
