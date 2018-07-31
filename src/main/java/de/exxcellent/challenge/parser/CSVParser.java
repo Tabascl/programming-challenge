@@ -31,6 +31,6 @@ public class CSVParser<T extends Entry> implements GenericParser {
      */
     @Override
     public List<T> Parse() {
-        return new CsvToBeanBuilder(reader).withType(type).build().parse();
+        return new CsvToBeanBuilder<T>(reader).withType(type).build().parse();
     }
 }
