@@ -1,4 +1,4 @@
-package de.exxcellent.challenge.Reader;
+package de.exxcellent.challenge.reader;
 
 import de.exxcellent.challenge.data.Entry;
 

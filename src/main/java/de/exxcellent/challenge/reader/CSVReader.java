@@ -1,4 +1,4 @@
-package de.exxcellent.challenge.Reader;
+package de.exxcellent.challenge.reader;
 
 import com.opencsv.bean.CsvToBeanBuilder;
 import de.exxcellent.challenge.data.Entry;
