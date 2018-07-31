@@ -1,6 +1,5 @@
 package de.exxcellent.challenge.data;
 
-import java.util.Iterator;
 import java.util.List;
 
 public class EntryContainer<T extends Entry> {
