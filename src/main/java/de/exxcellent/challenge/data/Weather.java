@@ -2,6 +2,9 @@ package de.exxcellent.challenge.data;
 
 import com.opencsv.bean.CsvBindByName;
 
+/**
+ * An implementation of {@code Entry} specific to data of 'weather' type.
+ */
 public class Weather implements Entry {
     @CsvBindByName(column = "Day")
     private int day;
@@ -12,22 +15,35 @@ public class Weather implements Entry {
     @CsvBindByName(column = "MnT")
     private int minTemp;
 
-    public int getDay() {
+    /**
+     * Get the day.
+     * @return the day
+     */
+    public int GetDay() {
         return day;
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
-    public int getMaximum() {
+    public int GetMaximum() {
         return maxTemp;
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
-    public int getMinimum() {
+    public int GetMinimum() {
         return minTemp;
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
-    public int getDistance() {
+    public int GetDistance() {
         return maxTemp - minTemp;
     }
 }
