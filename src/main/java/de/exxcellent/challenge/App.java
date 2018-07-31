@@ -6,6 +6,7 @@ import de.exxcellent.challenge.data.CSVFootball;
 import de.exxcellent.challenge.data.CSVWeather;
 
 import java.io.FileReader;
+import java.io.Reader;
 import java.util.List;
 
 /**
@@ -23,8 +24,8 @@ public final class App {
         FileReader readerWeather = new FileReader(pathWeather);
         FileReader readerFootball = new FileReader(pathFootball);
 
-        List<CSVWeather> resultWeather = new CsvToBeanBuilder(readerWeather).withType(CSVWeather.class).build().parse();
-        List<CSVFootball> resultFootball = new CsvToBeanBuilder(readerFootball).withType(CSVFootball.class).build().parse();
+        List<CSVWeather> resultWeather = readCsv(readerWeather, CSVWeather.class);
+        List<CSVFootball> resultFootball = readCsv(readerFootball, CSVFootball.class);
 
         int minWeather = getSmallestIndex(resultWeather);
         int minFootball = getSmallestIndex(resultFootball);
@@ -34,6 +35,10 @@ public final class App {
 
         System.out.printf("Day with smallest temperature spread : %s%n", dayWithSmallestTempSpread);
         System.out.printf("Team with smallest goal spread       : %s%n", teamWithSmallestGoalSpread);
+    }
+
+    private static <T extends CSVEntry> List<T> readCsv(Reader reader, Class<T> objClass) {
+        return new CsvToBeanBuilder(reader).withType(objClass).build().parse();
     }
 
     private static <T extends CSVEntry> int getSmallestIndex(List<T> result) {
