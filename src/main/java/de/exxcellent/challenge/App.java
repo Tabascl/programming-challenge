@@ -1,51 +1,47 @@
 package de.exxcellent.challenge;
 
-import com.opencsv.bean.CsvToBeanBuilder;
-import de.exxcellent.challenge.data.CSVEntry;
-import de.exxcellent.challenge.data.CSVFootball;
-import de.exxcellent.challenge.data.CSVWeather;
+import de.exxcellent.challenge.data.EntryContainer;
+import de.exxcellent.challenge.data.Football;
+import de.exxcellent.challenge.data.Weather;
+import de.exxcellent.challenge.parser.CSVParser;
+import de.exxcellent.challenge.writer.ConsoleWriter;
 
+import java.io.FileNotFoundException;
 import java.io.FileReader;
-import java.io.Reader;
 import java.util.List;
 
 /**
  * The entry class for your solution. This class is only aimed as starting point and not intended as baseline for your software
- * design. Read: create your own classes and packages as appropriate.
+ * design. Parse: create your own classes and packages as appropriate.
  *
  * @author Benjamin Schmid <benjamin.schmid@exxcellent.de>
  */
 public final class App {
 
-    public static void main(String... args) throws Exception {
+    public static void main(String... args) {
         String pathWeather = "src/main/resources/de/exxcellent/challenge/weather.csv";
         String pathFootball = "src/main/resources/de/exxcellent/challenge/football.csv";
 
-        FileReader readerWeather = new FileReader(pathWeather);
-        FileReader readerFootball = new FileReader(pathFootball);
-
-        List<CSVWeather> resultWeather = readCsv(readerWeather, CSVWeather.class);
-        List<CSVFootball> resultFootball = readCsv(readerFootball, CSVFootball.class);
-
-        int minWeather = getSmallestIndex(resultWeather);
-        int minFootball = getSmallestIndex(resultFootball);
-
-        String dayWithSmallestTempSpread = Integer.toString(resultWeather.get(minWeather).getDay());
-        String teamWithSmallestGoalSpread = resultFootball.get(minFootball).getTeam();
-
-        System.out.printf("Day with smallest temperature spread : %s%n", dayWithSmallestTempSpread);
-        System.out.printf("Team with smallest goal spread       : %s%n", teamWithSmallestGoalSpread);
-    }
-
-    private static <T extends CSVEntry> List<T> readCsv(Reader reader, Class<T> objClass) {
-        return new CsvToBeanBuilder(reader).withType(objClass).build().parse();
-    }
-
-    private static <T extends CSVEntry> int getSmallestIndex(List<T> result) {
-        int smallestIndex = 0;
-        for (int i = 0; i < result.size(); i++) {
-            if (result.get(i).getDistance() < result.get(smallestIndex).getDistance()) smallestIndex = i;
+        FileReader readerWeather = null;
+        FileReader readerFootball = null;
+        try {
+            readerWeather = new FileReader(pathWeather);
+            readerFootball = new FileReader(pathFootball);
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+            System.exit(1);
         }
-        return smallestIndex;
+
+        List weatherEntries = new CSVParser(readerWeather, Weather.class).Parse();
+        EntryContainer<Weather> weatherContainer = new EntryContainer(weatherEntries);
+        List footballEntries = new CSVParser(readerFootball, Football.class).Parse();
+        EntryContainer<Football> footballContainer = new EntryContainer(footballEntries);
+
+        Weather smallestWeather = weatherContainer.GetSmallestDistanceEntry();
+        Football smallestFootball = footballContainer.GetSmallestDistanceEntry();
+
+        ConsoleWriter writer = new ConsoleWriter();
+        writer.Write(String.format("Day with smallest temperature spread : %s%n", smallestWeather.GetDay()));
+        writer.Write(String.format("Team with smallest goal spread       : %s%n", smallestFootball.GetTeam()));
     }
 }
