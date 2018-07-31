@@ -1,5 +1,6 @@
 package de.exxcellent.challenge.data;
 
+import java.util.Iterator;
 import java.util.List;
 
 public class EntryContainer<T extends Entry> {
@@ -9,11 +10,11 @@ public class EntryContainer<T extends Entry> {
         this.entries = entries;
     }
 
-    public int GetSmallestDistance() {
+    public T GetSmallestDistanceEntry() {
         int smallestIndex = 0;
         for (int i = 0; i < entries.size(); i++) {
             if (entries.get(i).getDistance() < entries.get(smallestIndex).getDistance()) smallestIndex = i;
         }
-        return smallestIndex;
+        return entries.get(smallestIndex);
     }
 }
