@@ -34,7 +34,7 @@ public class Football implements Entry {
     }
 
     /**
-     * @{inheritDoc}
+     * {@inheritDoc}
      */
     @Override
     public int GetMinimum() {
